@@ -17,3 +17,8 @@ def receive():
 			break
 		print('Received data: {}'.format(str(data)))
 
+
+def send(host, port, data):
+	sckt = socket.socket()
+	sckt.connect((host, port))
+	sckt.send(data)
