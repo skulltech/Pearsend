@@ -2,7 +2,6 @@ import socket
 
 
 def getdata(message, maxlength):
-	message = message.encode('UTF-8')
 	length = len(message)
 
 	if len(str(length)) > maxlength:
@@ -28,12 +27,17 @@ def send(host, port, message):
 
 
 def main():
-	host = input('Enter host address of the target machine: ')
-	# host = '127.0.0.1'
-	# port = input('Enter the port to connect to: ')
-	message = input('Enter the message: ')
+	host = input('The address of the target machine: ')
+	port = int(input('Enter the port to connect to: ') or '5000')
+	filename = input('Enter the filename to send. Leave blank for text message: ')
 
-	send(host, 5000, message)
+	if filename:
+		with open(filename, 'rb') as f:
+			message = f.read()
+	else:
+		message = input('Enter the message: ').encode('UTF-8')
+
+	send(host, port, message)
 
 
 if __name__=='__main__':

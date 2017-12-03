@@ -14,19 +14,15 @@ def get_ip():
     return IP
 
 
-def receive():
-	host = get_ip()
-	# host = socket.gethostbyname(socket.gethostname())
-	# host = '127.0.0.1'
-	print(host)
-	port = 5000
-
+def receive(host, port):
+	print('Listening for connections on: {host}:{port}'.format(host=host, port=port))
+	
 	sckt = socket.socket()
 	sckt.bind((host, port))
 
 	sckt.listen(1)
 	conn, addr = sckt.accept()
-	print('Connention from : {}'.format(addr))
+	print('Connection from : {}'.format(addr))
 
 	chunks = []
 	bytes_received = 0
@@ -40,11 +36,18 @@ def receive():
 		chunks.append(chunk)
 		bytes_received = bytes_received + len(chunk)
 
-	return b''.join(chunks).decode('UTF-8')
+	return b''.join(chunks)
 
 def main():
-	message = receive()
-	print(message)
+	port = int(input('Port to listen on: ') or '5000')
+	destination = input('File to save the incoming data to: ')
+
+	message = receive(get_ip(), port)
+	if destination:
+		with open(destination, 'wb') as f:
+			f.write(message)
+	else:
+		print(message)
 
 
 if __name__=='__main__':
