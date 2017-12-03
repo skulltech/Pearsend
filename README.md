@@ -1,8 +1,10 @@
 # PearSend
 A simple CLI client for peer-to-peer file or message sending. Written in Python.
 
-_Important_: It supports file or message of size upto about 95 MB only (95.3674 MB to be exact).
+## Features
 
+- It supports file or message of size upto about 8.85 PeB (1 PiB ~ 10^6 GiB)!.
+- Protection against transmission error using `CRC32` checksum.
 
 ## Usage Examples
 
