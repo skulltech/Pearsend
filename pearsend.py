@@ -40,16 +40,24 @@ def get_ip():
     return IP
 
 
-def receive(host, port):
-	print('[*] Listening for connections on: {host}:{port}'.format(host=host, port=port))
+def considerate_print(text=None, quiet=False):
+	if not quiet:
+		if not text:
+			print()
+		else:
+			print(text)
+
+
+def receive(host, port, quiet=False):
+	considerate_print('[*] Listening for connections on: {host}:{port}'.format(host=host, port=port), quiet)
 	
 	sckt = socket.socket()
 	sckt.bind((host, port))
 
 	sckt.listen(1)
 	conn, addr = sckt.accept()
-	print()
-	print('[*] Connection from : {addr[0]}:{addr[1]}'.format(addr=addr))
+	considerate_print(quiet=quiet)
+	considerate_print('[*] Connection from : {addr[0]}:{addr[1]}'.format(addr=addr), quiet)
 
 	chunks = []
 	bytes_received = 0
@@ -67,7 +75,7 @@ def receive(host, port):
 
 	data = b''.join(chunks)
 	if (zlib.crc32(data) != checksum):
-		raise RuntimeError('Checksums don\'t match!')
+		raise RuntimeError("Checksums don't match!")
 	return data
 
 
@@ -79,6 +87,7 @@ def main():
 	parser.add_argument('--host', help='Address of the source or target machine', type=str)
 	parser.add_argument('-p', '--port', help='Port for listening on or sending to', type=int)
 	parser.add_argument('-m', '--message', help='Message to send', type=str)
+	parser.add_argument('-q', '--quiet', help='Quiet mode', action='store_true')
 	args = parser.parse_args()
 
 	if args.mode=='send':
@@ -100,8 +109,8 @@ def main():
 				message = input('[?] Enter the message: ').encode('UTF-8')
 
 		send(host, port, message)
-		print()
-		print('[*] Sent message succesfully!')
+		considerate_print(quiet=args.quiet)
+		considerate_print('[*] Sent message succesfully!', args.quiet)
 
 	elif args.mode=='receive':
 		if args.interactive:
@@ -112,17 +121,17 @@ def main():
 			destination = args.filepath
 
 		try:
-			message = receive(get_ip(), port)
+			message = receive(get_ip(), port, args.quiet)
 		except RuntimeError as e:
-			print('[!] RuntimeError: {}'.format(e))
-			sys.exit()
+			considerate_print('[!] RuntimeError: {}'.format(e), args.quiet)
+			sys.exit(1)
 
 		if destination:
 			with open(destination, 'wb') as f:
 				f.write(message)
-			print('[*] Incoming data saved to {}'.format(destination))
+			considerate_print('[*] Incoming data saved to {}'.format(destination), args.quiet)
 		else:
-			print('[*] The incoming data is > ')
+			considerate_print('[*] The incoming data is > ', args.quiet)
 			print(message)
 
 
