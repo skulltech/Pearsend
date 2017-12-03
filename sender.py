@@ -1,18 +1,18 @@
 import socket
 
 
-def getdata(message, maxlength):
+def getdata(message):
 	length = len(message)
 
-	if len(str(length)) > maxlength:
+	if len(str(length)) > 8:
 		raise Exception('The message is too long! Exiting')
 
-	data = '{:>4}'.format(str(length)).encode('UTF-8') + message
+	data = '{:>8}'.format(str(length)).encode('UTF-8') + message
 	return data
 
 
 def send(host, port, message):
-	data = getdata(message, 4)
+	data = getdata(message)
 	length = len(data)
 
 	sckt = socket.socket()

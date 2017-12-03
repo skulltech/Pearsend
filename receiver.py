@@ -26,7 +26,7 @@ def receive(host, port):
 
 	chunks = []
 	bytes_received = 0
-	chunk = conn.recv(4)
+	chunk = conn.recv(8)
 	length = int(chunk.decode('UTF-8'))
 
 	while bytes_received < length:
