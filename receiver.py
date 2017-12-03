@@ -1,5 +1,4 @@
 import socket
-import sys
 
 
 def get_ip():
@@ -15,14 +14,15 @@ def get_ip():
 
 
 def receive(host, port):
-	print('Listening for connections on: {host}:{port}'.format(host=host, port=port))
+	print('[*] Listening for connections on: {host}:{port}'.format(host=host, port=port))
 	
 	sckt = socket.socket()
 	sckt.bind((host, port))
 
 	sckt.listen(1)
 	conn, addr = sckt.accept()
-	print('Connection from : {}'.format(addr))
+	print()
+	print('[*] Connection from : {addr[0]}:{addr[1]}'.format(addr=addr))
 
 	chunks = []
 	bytes_received = 0
@@ -39,14 +39,16 @@ def receive(host, port):
 	return b''.join(chunks)
 
 def main():
-	port = int(input('Port to listen on: ') or '5000')
-	destination = input('File to save the incoming data to: ')
+	port = int(input('[?] Port to listen on: ') or '5000')
+	destination = input('[?] File to save the incoming data to. Leave blank to output to terminal: ')
 
 	message = receive(get_ip(), port)
 	if destination:
 		with open(destination, 'wb') as f:
 			f.write(message)
+		print('[*] Incoming data saved to {}'.format(destination))
 	else:
+		print('[*] The incoming data is > ')
 		print(message)
 
 

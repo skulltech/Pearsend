@@ -27,17 +27,19 @@ def send(host, port, message):
 
 
 def main():
-	host = input('The address of the target machine: ')
-	port = int(input('Enter the port to connect to: ') or '5000')
-	filename = input('Enter the filename to send. Leave blank for text message: ')
+	host = input('[?] The address of the target machine: ')
+	port = int(input('[?] Enter the port to connect to: ') or '5000')
+	filename = input('[?] The file to send. Leave blank for text message: ')
 
 	if filename:
 		with open(filename, 'rb') as f:
 			message = f.read()
 	else:
-		message = input('Enter the message: ').encode('UTF-8')
+		message = input('[?] Enter the message: ').encode('UTF-8')
 
 	send(host, port, message)
+	print()
+	print('[*] Sent message succesfully!')
 
 
 if __name__=='__main__':
