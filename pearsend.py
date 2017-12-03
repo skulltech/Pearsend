@@ -85,7 +85,7 @@ def main():
 	parser.add_argument('-i', '--interactive', help='If the program is to be run in interactive mode', action='store_true')
 	parser.add_argument('-f', '--filepath', help='Path of the file to be sent or to save incoming data to', type=str)
 	parser.add_argument('--host', help='Address of the source or target machine', type=str)
-	parser.add_argument('-p', '--port', help='Port for listening on or sending to', type=int)
+	parser.add_argument('-p', '--port', help='Port for listening on or sending to', type=int, default=5000)
 	parser.add_argument('-m', '--message', help='Message to send', type=str)
 	parser.add_argument('-q', '--quiet', help='Quiet mode', action='store_true')
 	args = parser.parse_args()
