@@ -1,11 +1,14 @@
+import socket
+
+
 def getdata(message, maxlength):
 	message = message.encode('UTF-8')
 	length = len(message)
 
-	if length > maxlength:
+	if len(str(length)) > maxlength:
 		raise Exception('The message is too long! Exiting')
 
-	data = {:0^4}.format(str(len(message))).encode('UTF-8') + message
+	data = '{:>4}'.format(str(length)).encode('UTF-8') + message
 	return data
 
 
@@ -30,3 +33,7 @@ def main():
 	message = input('Enter the message: ')
 
 	send('127.0.0.1', 5000, message)
+
+
+if __name__=='__main__':
+	main()

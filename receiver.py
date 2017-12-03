@@ -15,11 +15,11 @@ def receive():
 
 	chunks = []
 	bytes_received = 0
-	chunk = sckt.recv(4)
+	chunk = conn.recv(4)
 	length = int(chunk.decode('UTF-8'))
 
 	while bytes_received < length:
-		chunk = conn.recv(min(length-bytes_received, 1024)).decode()
+		chunk = conn.recv(min(length-bytes_received, 1024))
 		if not chunk:
 			raise RuntimeError('Socket connection broken!')
 		chunks.append(chunk)
