@@ -1,11 +1,20 @@
 # PearSend
 A simple CLI client for peer-to-peer file or message sending. Written in Python.
 
+[![PyPI version](https://badge.fury.io/py/pearsend.svg)](https://badge.fury.io/py/pearsend)
+
 ## Features
 
 - It supports file or message of size upto about 8.85 PeB (1 PiB ~ 10^6 GiB)!.
 - Protection against transmission error using `CRC32` checksum.
 - Comes with CLI (command-line argument) and Interactive mode, both!
+
+# Installation
+
+Install it using `pip`
+```terminal
+pip install pearsend
+```
 
 # Usage Examples
 
