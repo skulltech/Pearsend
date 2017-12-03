@@ -3,7 +3,9 @@ import sys
 
 
 def receive():
-	host = '127.0.0.1'
+	host = socket.gethostbyname(socket.gethostname())
+	# host = '127.0.0.1'
+	print(host)
 	port = 5000
 
 	sckt = socket.socket()

@@ -28,11 +28,12 @@ def send(host, port, message):
 
 
 def main():
-	# host = input('Enter host address of the target machine: ')
+	host = input('Enter host address of the target machine: ')
+	# host = '127.0.0.1'
 	# port = input('Enter the port to connect to: ')
 	message = input('Enter the message: ')
 
-	send('127.0.0.1', 5000, message)
+	send(host, 5000, message)
 
 
 if __name__=='__main__':
