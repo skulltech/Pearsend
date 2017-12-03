@@ -1,4 +1,5 @@
 import socket
+import zlib
 
 
 def get_ip():
@@ -26,9 +27,11 @@ def receive(host, port):
 
 	chunks = []
 	bytes_received = 0
-	chunk = conn.recv(8)
+	chunk = conn.recv(16)
 	length = int(chunk.decode('UTF-8'))
 
+	checksum = int(conn.recv(10).decode('UTF-8'))
+	
 	while bytes_received < length:
 		chunk = conn.recv(min(length-bytes_received, 1024))
 		if not chunk:
@@ -36,13 +39,22 @@ def receive(host, port):
 		chunks.append(chunk)
 		bytes_received = bytes_received + len(chunk)
 
-	return b''.join(chunks)
+	data = b''.join(chunks)
+	if (zlib.crc32(data) != checksum):
+		raise RuntimeError('Checksums don\'t match!')
+	return data
+
 
 def main():
 	port = int(input('[?] Port to listen on: ') or '5000')
 	destination = input('[?] File to save the incoming data to. Leave blank to output to terminal: ')
 
-	message = receive(get_ip(), port)
+	try:
+		message = receive(get_ip(), port)
+	except RuntimeError as e:
+		print('[!] RuntimeError: {}'.format(e))
+		sys.exit()
+
 	if destination:
 		with open(destination, 'wb') as f:
 			f.write(message)

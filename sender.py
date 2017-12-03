@@ -1,13 +1,14 @@
 import socket
+import zlib
 
 
 def getdata(message):
 	length = len(message)
 
-	if len(str(length)) > 8:
+	if len(str(length)) > 16:
 		raise Exception('The message is too long! Exiting')
 
-	data = '{:>8}'.format(str(length)).encode('UTF-8') + message
+	data = '{:>16}'.format(str(length)).encode('UTF-8') + '{:>10}'.format(str(zlib.crc32(message))).encode('UTF-8') + message
 	return data
 
 
