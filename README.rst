@@ -19,7 +19,7 @@ Installation
 
 Install it using ``pip``
 
-.. code:: terminal
+.. code:: console
 
     pip install pearsend
 
@@ -31,7 +31,7 @@ Command-line Mode
 
 **Help Text**
 
-.. code:: terminal
+.. code:: console
 
     sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py -h
     usage: pearsend.py [-h] [-i] [-f FILEPATH] [--host HOST] [-p PORT]
@@ -57,7 +57,7 @@ Sending text message
 
 **Receiver**
 
-.. code:: terminal
+.. code:: console
 
     sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py receive -p 5000
     [*] Listening for connections on: 10.194.52.135:5000
@@ -68,7 +68,7 @@ Sending text message
 
 **Sender**
 
-.. code:: terminal
+.. code:: console
 
     sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py send --host 10.194.52.135 -m "Hello HAL!"
 
@@ -79,7 +79,7 @@ Sending binary file
 
 **Receiver**
 
-.. code:: terminal
+.. code:: console
 
     sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py receive -p 5000 -f recd.png
     [*] Listening for connections on: 10.194.52.135:5000
@@ -89,7 +89,7 @@ Sending binary file
 
 **Sender**
 
-.. code:: terminal
+.. code:: console
 
     sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py send --host 10.194.52.135 -f image.png
 
@@ -103,7 +103,7 @@ Sending text message
 
 **Receiver**
 
-.. code:: terminal
+.. code:: console
 
     sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py receive -i
     [?] Port to listen on: 
@@ -116,7 +116,7 @@ Sending text message
 
 **Sender**
 
-.. code:: terminal
+.. code:: console
 
     sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py send -i
     [?] The address of the target machine: 10.194.52.135
@@ -131,7 +131,7 @@ Sending binary file
 
 **Receiver**
 
-.. code:: terminal
+.. code:: console
 
     sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py receive -i
     [?] Port to listen on: 
@@ -143,7 +143,7 @@ Sending binary file
 
 **Sender**
 
-.. code:: terminal
+.. code:: console
 
     sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py send -i
     [?] The address of the target machine: 10.194.52.135
