@@ -13,7 +13,7 @@ A simple CLI client for peer-to-peer file or message sending. Written in Python.
 
 Install it using `pip`
 ```console
-pip install pearsend
+$ pip3 install pearsend
 ```
 
 # Usage Examples
@@ -22,8 +22,8 @@ pip install pearsend
 
 __Help Text__
 ```console
-sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py -h
-usage: pearsend.py [-h] [-i] [-f FILEPATH] [--host HOST] [-p PORT]
+sumit@HAL9000:~$ pearsend -h
+usage: pearsend [-h] [-i] [-f FILEPATH] [--host HOST] [-p PORT]
                    [-m MESSAGE]
                    {send,receive}
 
@@ -46,7 +46,7 @@ optional arguments:
 
 __Receiver__
 ```console
-sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py receive -p 5000
+sumit@HAL9000:~$ pearsend receive -p 5000
 [*] Listening for connections on: 10.194.52.135:5000
 
 [*] Connection from : 10.194.52.135:47804
@@ -56,7 +56,7 @@ b'Hello HAL!'
 
 __Sender__
 ```console
-sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py send --host 10.194.52.135 -m "Hello HAL!"
+sumit@HAL9000:~$ pearsend send --host 10.194.52.135 -m "Hello HAL!"
 
 [*] Sent message succesfully!
 ```
@@ -65,7 +65,7 @@ sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py send --host 10.194.52.13
 
 __Receiver__
 ```console
-sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py receive -p 5000 -f recd.png
+sumit@HAL9000:~$ pearsend receive -p 5000 -f recd.png
 [*] Listening for connections on: 10.194.52.135:5000
 
 [*] Connection from : 10.194.52.135:47808
@@ -74,7 +74,7 @@ sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py receive -p 5000 -f recd.
 
 __Sender__
 ```console
-sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py send --host 10.194.52.135 -f image.png
+sumit@HAL9000:~$ pearsend send --host 10.194.52.135 -f image.png
 
 [*] Sent message succesfully!
 ```
@@ -86,7 +86,7 @@ sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py send --host 10.194.52.13
 
 __Receiver__
 ```console
-sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py receive -i
+sumit@HAL9000:~$ pearsend receive -i
 [?] Port to listen on: 
 [?] File to save the incoming data to. Leave blank to output to terminal: 
 [*] Listening for connections on: 10.194.52.135:5000
@@ -98,7 +98,7 @@ b'Hello HAL!'
 
 __Sender__
 ```console
-sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py send -i
+sumit@HAL9000:~$ pearsend send -i
 [?] The address of the target machine: 10.194.52.135
 [?] Enter the port to connect to: 
 [?] The file to send. Leave blank for text message: 
@@ -111,7 +111,7 @@ sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py send -i
 
 __Receiver__
 ```console
-sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py receive -i
+sumit@HAL9000:~$ pearsend receive -i
 [?] Port to listen on: 
 [?] File to save the incoming data to. Leave blank to output to terminal: recd.jpg
 [*] Listening for connections on: 10.194.52.135:5000
@@ -122,7 +122,7 @@ sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py receive -i
 
 __Sender__
 ```console
-sumit@HAL9000:~/Documents/PearSend$ python3 pearsend.py send -i
+sumit@HAL9000:~$ pearsend send -i
 [?] The address of the target machine: 10.194.52.135
 [?] Enter the port to connect to: 
 [?] The file to send. Leave blank for text message: image.jpg
