@@ -1,4 +1,4 @@
-# PearSend
+# Pearsend
 A simple CLI client for peer-to-peer file or message sending. Written in Python.
 
 [![PyPI version](https://badge.fury.io/py/pearsend.svg)](https://badge.fury.io/py/pearsend)
